@@ -1,0 +1,9 @@
+[head]
+hpc-head ansible_host=192.168.1.10 ansible_user=hpcuser
+
+[compute]
+hpc-node1 ansible_host=192.168.1.11 ansible_user=hpcuser
+hpc-node2 ansible_host=192.168.1.12 ansible_user=hpcuser
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

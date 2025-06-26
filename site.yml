@@ -1,0 +1,6 @@
+- name: Configure HPC Cluster with SLURM
+  hosts: all
+  become: yes
+  roles:
+    - common
+    - slurm

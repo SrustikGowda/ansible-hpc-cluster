@@ -1,0 +1,26 @@
+- name: Install SLURM packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - slurm-wlm
+    - slurmctld
+    - slurmd
+
+- name: Copy SLURM configuration
+  template:
+    src: slurm.conf.j2
+    dest: /etc/slurm-llnl/slurm.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable and start SLURM daemons
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - slurmd
+    - slurmctld
+  when: inventory_hostname in groups['head']
